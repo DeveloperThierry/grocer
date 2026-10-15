@@ -2,6 +2,7 @@ import { useSignIn } from '@clerk/expo'
 import { type Href, Link, useRouter } from 'expo-router'
 import React from 'react'
 import { Pressable, StyleSheet, TextInput, View, Text } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function Page() {
   const { signIn, errors, fetchStatus } = useSignIn()
@@ -118,9 +119,9 @@ export default function Page() {
   }
 
   return (
-    <View >
-      <Text>
-        Sign in
+    <SafeAreaView className="flex my-10 p-4 gap-2 pt-10">
+      <Text className="mb-10 font-bold text-2xl">
+        Sign In
       </Text>
 
 
@@ -130,7 +131,6 @@ export default function Page() {
         autoCapitalize="none"
         value={emailAddress}
         placeholder="Enter email"
-        placeholderTextColor="#666666"
         onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
         keyboardType="email-address"
       />
@@ -139,10 +139,8 @@ export default function Page() {
       )}
       <Text >Password</Text>
       <TextInput
-       
         value={password}
         placeholder="Enter password"
-        placeholderTextColor="#666666"
         secureTextEntry={true}
         onChangeText={(password) => setPassword(password)}
       />
@@ -150,19 +148,19 @@ export default function Page() {
         <Text >{errors.fields.password.message}</Text>
       )}
       <Pressable
-       
+       className="bg-black rounded-md w-fit px-4 py-2"
         onPress={handleSubmit}
         disabled={!emailAddress || !password || fetchStatus === 'fetching'}
       >
-        <Text >Sign In</Text>
+        <Text className="text-white">Login</Text>
       </Pressable>
      
-      <View >
+      <View  className="flex flex-row mt-10">
         <Text>Don't have an account? </Text>
         <Link href="/sign-up">
-          <Text>Sign up</Text>
+          <Text className="underline">Sign up</Text>
         </Link>
       </View>
-    </View>
+    </SafeAreaView>
   )
 }

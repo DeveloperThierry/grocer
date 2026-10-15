@@ -1,7 +1,7 @@
-import { useAuth, useSignIn, useSignUp } from '@clerk/expo'
+import { useAuth, useSignUp } from '@clerk/expo'
 import { Link } from 'expo-router'
 import { useState } from 'react'
-import { Button, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button, Pressable, SafeAreaView, Text, TextInput, TouchableOpacity, View } from 'react-native'
 
 export default function MainScreen() {
   const { isLoaded, isSignedIn } = useAuth()
@@ -56,7 +56,10 @@ export default function MainScreen() {
 
   if (isVerifying) {
     return (
-      <View>
+      <SafeAreaView className="flex mt-12 p-4 gap-2 pt-10">
+        <Text  className="mb-10 font-bold text-2xl">
+             Verification
+           </Text>
         <TextInput
          
           value={code}
@@ -64,14 +67,19 @@ export default function MainScreen() {
           onChangeText={setCode}
           keyboardType="numeric"
         />
-        <Button title="Verify" onPress={handleVerify} />
-        
-      </View>
+        <Button title="Verify" onPress={handleVerify}  disabled={!code} />
+        {/* <Button title="Resend" onPress={() => signUp.verifications.sendEmailCode()} /> */}
+      </SafeAreaView>
     )
   }
 
   return (
-    <View >
+    <SafeAreaView className="flex my-10 p-4 gap-2 pt-10">
+     <Text  className="mb-10 font-bold text-2xl">
+             Sign Up
+           </Text>
+                 <Text >Email Address</Text>
+           
       <TextInput
        
         autoCapitalize="none"
@@ -80,6 +88,8 @@ export default function MainScreen() {
         onChangeText={setEmailAddress}
         keyboardType="email-address"
       />
+            <Text >Password</Text>
+      
       <TextInput
        
         value={password}
@@ -88,23 +98,24 @@ export default function MainScreen() {
         onChangeText={setPassword}
       />
       {/* <Button title="Sign up" onPress={handleSignUp} /> */}
-      <Pressable
-             
-             onPress={handleSignUp}
-              disabled={!emailAddress || !password || isVerifying}
-            >
-              <Text >Sign Up</Text>
-            </Pressable>
+    
+             <Pressable
+                   className="bg-black rounded-md w-fit px-4 py-2"
+                    onPress={handleSignUp}
+                    disabled={!emailAddress || !password || isVerifying}
+                  >
+                    <Text className="text-white">Submit</Text>
+                  </Pressable>
       {/* Required for sign-up flows on Expo web if your application uses legacy bot sign-up protection.
       Clerk skips the browser CAPTCHA on iOS and Android.
       See https://clerk.com/docs/guides/secure/legacy-bot-protection */}
-      <View >
-                <Text>Already have an account? </Text>
-                <Link href="/sign-in">
-                  <Text>Sign In</Text>
-                </Link>
-              </View>
+      <View  className="flex flex-row mt-10">
+              <Text>Already have an account? </Text>
+              <Link href="/sign-in">
+                <Text className="underline">Sign In</Text>
+              </Link>
+            </View>
       <View nativeID="clerk-captcha" />
-    </View>
+    </SafeAreaView>
   )
 }

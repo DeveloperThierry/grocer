@@ -14,7 +14,6 @@ export default function Page() {
         <Pressable className="bg-black w-full h-12 rounded-md flex justify-center items-center p-4" onPress={() => signOut()}>
           <Text className="text-white font-bold">Sign out</Text>
         </Pressable>
-
       </Show>
     </View>
   );

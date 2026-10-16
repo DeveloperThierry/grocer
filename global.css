@@ -1,3 +1,59 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 96%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 9%;
+    --success: 0 0% 9%;
+    --priority-low: 0 0% 96%;
+    --priority-low-foreground: 0 0% 45%;
+    --priority-medium: 0 0% 90%;
+    --priority-medium-foreground: 0 0% 20%;
+    --priority-high: 0 0% 15%;
+    --priority-high-foreground: 0 0% 98%;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: 0 0% 4%;
+      --foreground: 0 0% 98%;
+      --card: 0 0% 6%;
+      --card-foreground: 0 0% 98%;
+      --primary: 0 0% 98%;
+      --primary-foreground: 0 0% 9%;
+      --secondary: 0 0% 15%;
+      --secondary-foreground: 0 0% 98%;
+      --muted: 0 0% 15%;
+      --muted-foreground: 0 0% 65%;
+      --accent: 0 0% 15%;
+      --destructive: 0 62.8% 30.6%;
+      --destructive-foreground: 0 0% 98%;
+      --border: 0 0% 15%;
+      --input: 0 0% 15%;
+      --ring: 0 0% 83.1%;
+      --success: 0 0% 98%;
+      --priority-low: 0 0% 15%;
+      --priority-low-foreground: 0 0% 65%;
+      --priority-medium: 0 0% 25%;
+      --priority-medium-foreground: 0 0% 90%;
+      --priority-high: 0 0% 90%;
+      --priority-high-foreground: 0 0% 10%;
+    }
+  }
+}

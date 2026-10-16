@@ -1,13 +1,19 @@
+import useSocialAuth from '@/hooks/useSocialAuth'
 import { useSignIn } from '@clerk/expo'
 import { type Href, Link, useRouter } from 'expo-router'
 import React from 'react'
-import { Pressable, StyleSheet, TextInput, View, Text } from 'react-native'
+import { Image, Pressable, Text, TextInput, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+export default function SignInScreen() {
 
-export default function Page() {
   const { signIn, errors, fetchStatus } = useSignIn()
   const router = useRouter()
 
+  const {handleSocialAuth, loadingStrategy} = useSocialAuth()
+  
+    const isGoogleClicked = loadingStrategy === "oauth_google"
+    const isGitHubClicked = loadingStrategy === "oauth_github"
+    const isLoading = isGoogleClicked || isGitHubClicked
   const [emailAddress, setEmailAddress] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [code, setCode] = React.useState('')
@@ -119,7 +125,7 @@ export default function Page() {
   }
 
   return (
-    <SafeAreaView className="flex my-10 p-4 gap-2 pt-10">
+    <SafeAreaView className="flex-1 bg-primary my-10 p-4 gap-2 pt-10">
       <Text className="mb-10 font-bold text-2xl">
         Sign In
       </Text>
@@ -148,13 +154,37 @@ export default function Page() {
         <Text >{errors.fields.password.message}</Text>
       )}
       <Pressable
-       className="bg-black rounded-md w-fit px-4 py-2"
+       className={`mb-3 h-14 flex-row items-center rounded-2xl border border-border bg-card px-4 active:opacity-90 ${isLoading ? "opacity-70":""}`}
         onPress={handleSubmit}
         disabled={!emailAddress || !password || fetchStatus === 'fetching'}
       >
         <Text className="text-white">Login</Text>
       </Pressable>
-     
+     <View className="mt-6">
+       <Pressable className={`mb-3 h-14 flex-row items-center rounded-2xl border border-border bg-card px-4 active:opacity-90 ${isLoading ? "opacity-70":""}`} onPress={() => handleSocialAuth("oauth_google")} disabled={isLoading}>
+        <View className="h-8 w-8 items-center justify-center rounded-full bg-white">
+          <Image
+            source={require("../../../assets/images/google.png")}
+            style={{ width: 20, height: 20 }}
+          />
+        </View>
+              <Text className="ml-3 flex-1 text-lg font-semibold text-card-foreground">{isGoogleClicked ? "Connecting Google...":"Continue with Google"}</Text>
+            </Pressable>
+            <Pressable className={`mb-3 h-14 flex-row items-center rounded-2xl border border-border bg-card px-4 active:opacity-90 ${isLoading ? "opacity-70":""}`} onPress={() => handleSocialAuth("oauth_github")} disabled={isLoading}>
+        <View className="h-8 w-8 items-center justify-center rounded-full bg-white">
+          <Image
+            source={require("../../../assets/images/github.png")}
+            style={{ width: 20, height: 20 }}
+          />
+        </View>
+              <Text className="ml-3 flex-1 text-lg font-semibold text-card-foreground">{isGitHubClicked ? "Connecting Github...":"Continue with Github"}</Text>
+            </Pressable>
+     </View>
+     <View>
+     <Text className="mt-3  text-sm leading-5 text-muted-foreground">
+      By continuing, you agree to our Terms and Privacy Policy
+     </Text>
+     </View>
       <View  className="flex flex-row mt-10">
         <Text>Don't have an account? </Text>
         <Link href="/sign-up">

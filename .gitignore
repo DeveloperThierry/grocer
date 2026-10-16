@@ -45,3 +45,6 @@ example
 #environment
 .env.*
 .env
+
+#google idx
+.idx*

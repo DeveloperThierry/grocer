@@ -1,9 +1,9 @@
 import { useAuth, useSignUp } from '@clerk/expo'
 import { Link } from 'expo-router'
 import { useState } from 'react'
-import { Button, Pressable, SafeAreaView, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Button, Pressable, SafeAreaView, Text, TextInput, View } from 'react-native'
 
-export default function MainScreen() {
+export default function SignUpScreen() {
   const { isLoaded, isSignedIn } = useAuth()
   const { signUp } = useSignUp()
 
@@ -56,7 +56,7 @@ export default function MainScreen() {
 
   if (isVerifying) {
     return (
-      <SafeAreaView className="flex mt-12 p-4 gap-2 pt-10">
+      <SafeAreaView className="flex-1 bg-primary mt-12 p-4 gap-2 pt-10" >
         <Text  className="mb-10 font-bold text-2xl">
              Verification
            </Text>
@@ -74,7 +74,7 @@ export default function MainScreen() {
   }
 
   return (
-    <SafeAreaView className="flex my-10 p-4 gap-2 pt-10">
+    <SafeAreaView className="flex-1 bg-primary my-10 p-4 gap-2 pt-10">
      <Text  className="mb-10 font-bold text-2xl">
              Sign Up
            </Text>
@@ -100,7 +100,7 @@ export default function MainScreen() {
       {/* <Button title="Sign up" onPress={handleSignUp} /> */}
     
              <Pressable
-                   className="bg-black rounded-md w-fit px-4 py-2"
+                  className={`mb-3 h-14 flex-row items-center rounded-2xl border border-border bg-card px-4 active:opacity-90`}
                     onPress={handleSignUp}
                     disabled={!emailAddress || !password || isVerifying}
                   >
@@ -109,6 +109,9 @@ export default function MainScreen() {
       {/* Required for sign-up flows on Expo web if your application uses legacy bot sign-up protection.
       Clerk skips the browser CAPTCHA on iOS and Android.
       See https://clerk.com/docs/guides/secure/legacy-bot-protection */}
+      <Text className="mt-3 text-sm leading-5 text-muted-foreground">
+            By continuing, you agree to our Terms and Privacy Policy
+           </Text>
       <View  className="flex flex-row mt-10">
               <Text>Already have an account? </Text>
               <Link href="/sign-in">

@@ -6,7 +6,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function Page() {
   const { user } = useUser();
   const { signOut } = useClerk();
-
   return (
     <SafeAreaView className="flex-1 bg-white p-4 gap-4 mt-10" edges={['top']}>
       <Text className="text-xl font-bold">Welcome!</Text>

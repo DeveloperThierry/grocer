@@ -1,11 +1,20 @@
+import { useGroceryStore } from "@/store/grocery-store";
 import { useAuth } from "@clerk/expo";
 import { Redirect, Stack } from "expo-router";
 // import { NativeTabs } from 'expo-router/native-tabs';
 import { NativeTabs } from 'expo-router/unstable-native-tabs';
+import { useEffect } from "react";
 
 export default function TabsLayout() {
   const { isSignedIn, isLoaded } = useAuth();
 
+  const {loadItems, items} = useGroceryStore()
+
+  useEffect(() => {
+    loadItems()
+  }, [])
+
+  // console.log("ITEMS: ", items)
   if (!isLoaded) {
     return null;
   }

@@ -63,7 +63,7 @@ export default function SignInScreen() {
   }
 
   const handleVerify = async () => {
-    await signIn.mfa.verifyEmailCode({ code })
+    const {error} = await signIn.mfa.verifyEmailCode({ code })
 
     if (signIn.status === 'complete') {
       await signIn.finalize({
@@ -86,13 +86,15 @@ export default function SignInScreen() {
     } else {
       // Check why the sign-in is not complete
       console.error('Sign-in attempt not complete:', signIn)
+      console.error('Sign-in attempt not complete:', error)
+      
     }
   }
 
   if (signIn.status === 'needs_client_trust') {
     return (
-      <View >
-        <Text >Verify your account</Text>
+      <SafeAreaView className="flex-1 bg-primary mt-10 p-4 gap-2 pt-10">
+        <Text className="mb-10 font-bold text-2xl">Verify your account</Text>
         <TextInput
           value={code}
           placeholder="Enter your verification code"
@@ -101,31 +103,33 @@ export default function SignInScreen() {
           keyboardType="numeric"
         />
         {errors.fields.code && <Text >{errors.fields.code.message}</Text>}
-        <Pressable
+        <Pressable className="mb-3 h-14 flex-row items-center rounded-2xl border border-border bg-card px-4 active:opacity-90"
          
           onPress={handleVerify}
           disabled={fetchStatus === 'fetching'}
         >
-          <Text>Verify</Text>
+          <Text className="ml-3 flex-1 text-lg font-semibold text-card-foreground">Verify</Text>
         </Pressable>
+        <View className="flex flex-row justify-between">
         <Pressable
-         
+          className="mb-3 h-14 flex-1 flex-row items-center rounded-2xl border-none bg-card px-4 active:opacity-90 bg-gray-500 "
           onPress={() => signIn.mfa.sendEmailCode()}
-        >
-          <Text >I need a new code</Text>
+          >
+          <Text className="ml-3 text-lg font-semibold  text-center text-card-foreground">I need a new code</Text>
         </Pressable>
         <Pressable
-         
-          onPress={() => signIn.reset()}
-        >
-          <Text >Start over</Text>
+         className="mb-3 h-14 flex-2 flex-row items-center  rounded-2xl border-none bg-red-500 bg-card px-4 active:opacity-90"
+         onPress={() => signIn.reset()}
+         >
+          <Text className="ml-1 text-lg font-semibold   text-card-foreground">Start over</Text>
         </Pressable>
-      </View>
+          </View>
+      </SafeAreaView>
     )
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-primary my-10 p-4 gap-2 pt-10">
+    <SafeAreaView className="flex-1 bg-primary mt-10 p-4 gap-2 pt-10">
       <Text className="mb-10 font-bold text-2xl">
         Sign In
       </Text>

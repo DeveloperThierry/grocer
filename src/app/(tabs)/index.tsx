@@ -8,7 +8,7 @@ export default function Page() {
   const { signOut } = useClerk();
 
   return (
-    <SafeAreaView className="flex-1 bg-white p-4 gap-4 my-10">
+    <SafeAreaView className="flex-1 bg-white p-4 gap-4 mt-10" edges={['top']}>
       <Text className="text-xl font-bold">Welcome!</Text>
 
       <Show when="signed-in">

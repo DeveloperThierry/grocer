@@ -28,8 +28,8 @@
     --priority-high: 0 0% 15%;
     --priority-high-foreground: 0 0% 98%;
   }
-
-  @media (prefers-color-scheme: dark) {
+  /* @media (prefers-color-scheme: dark) { */
+  @media (prefers-color-scheme: light) {
     :root {
       --background: 0 0% 4%;
       --foreground: 0 0% 98%;

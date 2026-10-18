@@ -45,15 +45,15 @@ const PlannerFormCard = () => {
       {/* NAME */}
       <Text className="text-sm font-semibold text-foreground">Name</Text>
       <View className="mt-2 flex-row items-center rounded-2xl border border-border bg-muted px-4 py-3">
-        <FontAwesome6 name="bag-shopping" size={13} color="#5b7567"/>
+        <FontAwesome6 name="bag-shopping" size={13} color="#adb5bd"/>
         <TextInput value={name} placeholder="Ex. Whiteberries" placeholderTextColor="#8aa397" onChangeText={setName} className="ml-3 flex-1 text-base text-foreground"/>
       </View>
 
        {/* Quantity */}
       <Text className="text-sm font-semibold text-foreground">Quantity</Text>
        <View className="mt-2 flex-row items-center rounded-2xl border border-border bg-muted px-4 py-3">
-        <FontAwesome6 name="hashtag" size={13} color="#5b7567"/>
-        <TextInput value={quantity} placeholder="1" placeholderTextColor="#8aa397" onChangeText={handleQuantityChange} keyboardType="number-pad" className="ml-3 flex-1 text-base text-foreground"/>
+        <FontAwesome6 name="hashtag" size={13} color="#adb5bd"/>
+        <TextInput value={quantity} placeholder="1" placeholderTextColor="#adb5bd" onChangeText={handleQuantityChange} keyboardType="number-pad" className="ml-3 flex-1 text-base text-foreground"/>
       </View>
 
       {/* CATEGORIES */}
@@ -69,7 +69,7 @@ const PlannerFormCard = () => {
                 onPress={() => setCategory(option)}
                 className={`flex-row items-center rounded-full px-4 py-2 ${active ? "bg-primary" : "bg-secondary"}`}
                 >
-                    <FontAwesome6 name={categoryIcons[option]} size={12} color={active ? "#fff" : "#486856"}/>
+                    <FontAwesome6 name={categoryIcons[option]} size={12} color={active ? "#fff" : "#adb5bd"}/>
                     <Text className={`ml-2 text-sm font-semibold ${active ? "text-primary-foreground" : "text-secondary-foreground"}`}>{option}</Text>
                 </Pressable>
             )
@@ -90,7 +90,7 @@ const PlannerFormCard = () => {
                 onPress={() => setPriority(option)}
                 className={`flex-row items-center rounded-full px-4 py-2 ${active ? "bg-primary" : "bg-secondary"}`}
                 >
-                    <FontAwesome6 name={icon} size={12} color={active ? "#fff" : "#486856"}/>
+                    <FontAwesome6 name={icon} size={12} color={active ? "#fff" : "#adb5bd"}/>
                     <Text className={`ml-2 text-sm font-semibold capitalize ${active ? "text-primary-foreground" : "text-secondary-foreground"}`}>{option}</Text>
                 </Pressable>
             )
@@ -102,7 +102,7 @@ const PlannerFormCard = () => {
       onPress={createItem}
       disabled={!canCreate}
       >
-        <FontAwesome6 name="plus" size={14} color={canCreate ? "#fff" : "#7a9386"}/>
+        <FontAwesome6 name="plus" size={14} color={canCreate ? "#fff" : "#adb5bd"}/>
         <Text className={`ml-2 text-base font-semibold ${canCreate ? "text-primary-foreground" : "text-muted-foreground"}`}>Add to Grocery List</Text>
 
       </Pressable>

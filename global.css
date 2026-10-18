@@ -27,6 +27,8 @@
     --priority-medium-foreground: 0 0% 20%;
     --priority-high: 0 0% 15%;
     --priority-high-foreground: 0 0% 98%;
+    --steel: #adb5bd;
+
   }
   @media (prefers-color-scheme: dark) {
   /* @media (prefers-color-scheme: light) { */
@@ -54,6 +56,8 @@
       --priority-medium-foreground: 0 0% 90%;
       --priority-high: 0 0% 90%;
       --priority-high-foreground: 0 0% 10%;
+      /* --steel: 31.9% 33.3% 34.8%; */
+      --steel: #495057;
     }
   }
 }

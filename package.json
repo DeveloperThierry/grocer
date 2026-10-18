@@ -57,7 +57,8 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "db:push": "drizzle-kit push",
-    "seed:grocery": "node ./scripts/seed-grocery.js"
+    "seed:grocery": "node ./scripts/seed-grocery.js",
+    "vercel-build":"expo export"
   },
   "private": true
 }

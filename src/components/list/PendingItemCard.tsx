@@ -63,7 +63,7 @@ const PendingItemCard = ({item}:{item:GroceryItem}) => {
         <Pressable className="h-9 w-9 items-center justify-center rounded-xl bg-[#ced4da]"
                 onPress={ () => removeItem(item.id)}
                 >
-                    <FontAwesome name="trash" size={13} color="#d4d5f58"/>
+                    <FontAwesome name="trash" size={13} />
                 </Pressable>
 
       </View>

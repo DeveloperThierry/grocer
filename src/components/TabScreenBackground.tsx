@@ -12,6 +12,11 @@ const TabScreenBackground = () => {
     pointerEvents='none'
     className='absolute -right-[120px] -top-32 h-72 w-72 rounded-full bg-secondary'
     />
+     {/* <View
+    pointerEvents='none'
+    className='absolute -right-[120px] -bottom-32 h-72 w-72 rounded-full bg-secondary'
+    /> */}
+    
     </>
   )
 }

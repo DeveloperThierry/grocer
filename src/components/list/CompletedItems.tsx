@@ -1,6 +1,6 @@
-import { View, Text, Pressable } from 'react-native'
+import { View, Text, Pressable, FlatList } from 'react-native'
 import React from 'react'
-import { useGroceryStore } from '@/store/grocery-store'
+import { GroceryItem, useGroceryStore } from '@/store/grocery-store'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 
 const CompletedItems = () => {
@@ -12,7 +12,29 @@ const CompletedItems = () => {
         <Text className="text-sm font-semibold uppercase tracking-[1px] text-secondary-foreground">
             Completed
         </Text>
-        {completedItems.map((item) => (
+        <FlatList
+        data={completedItems}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => (  <View className="mt-3 flex-row items-center justify-between rounded-2xl border border-border bg-card px-3 py-2">
+
+            <View className="flex-row items-center gap-2">
+                <Pressable onPress={async () => {
+                    await togglePurchased(item.id)
+                }}
+                className="h-6 w-6 items-center justify-center rounded-full bg-primary bg-green-500">
+                    <FontAwesome name="check" size={12} color="#ced4da"/>
+                </Pressable>
+                <Text className="text-base text-muted-foreground line-through">{item.name}</Text>
+            </View>
+            <Pressable className="h-9 w-9 items-center justify-center rounded-xl bg-[#ced4da]"
+                    onPress={() => removeItem(item.id)}
+                    >
+                        <FontAwesome name="trash" size={13} />
+                    </Pressable>
+                   
+                    </View>) }
+        />
+        {/* {completedItems.map((item) => (
 
             <View className="mt-3 flex-row items-center justify-between rounded-2xl border border-border bg-card px-3 py-2">
 
@@ -28,10 +50,10 @@ const CompletedItems = () => {
         <Pressable className="h-9 w-9 items-center justify-center rounded-xl bg-[#ced4da]"
                 onPress={() => removeItem(item.id)}
                 >
-                    <FontAwesome name="trash" size={13} color="#d4d5f58"/>
+                    <FontAwesome name="trash" size={13} color="#d4d558"/>
                 </Pressable>
                 </View>
-            ))}
+            ))} */}
     </View>
   )
 }

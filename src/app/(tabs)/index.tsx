@@ -16,7 +16,7 @@ export default function ListScreen() {
   return (
 
       <FlatList
-      className="flex-1 bg-background"
+      className="flex-1 bg-background pt-5"
       contentInsetAdjustmentBehavior="automatic"
       data={pendingItems}
       keyExtractor={item => item.id}

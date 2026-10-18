@@ -1,5 +1,5 @@
 import { create } from "zustand"
-export type GroceryCategory = "Produce" | "Diary" | "Bakery" | "Pantry" | "Snacks"
+export type GroceryCategory = "Produce" | "Dairy" | "Bakery" | "Pantry" | "Snacks"
 export type GroceryPriority= "low" | "medium" | "high"
 export interface GroceryItem {
     id: string,

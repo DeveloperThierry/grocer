@@ -54,15 +54,15 @@ export const useGroceryStore = create<GroceryStore>((set, get) => ({
         try {
             const res = await fetch("/api/items", {
                 method:"POST", 
-                headers:{"Content-Type":"applicatio/json"}, 
+                headers:{"Content-Type":"application/json"}, 
                 body: JSON.stringify({
                     name:input.name,
                     category:input.category,
-                    quantity:Math.min(1, input.quantity),
+                    quantity:Math.max(1, input.quantity),
                     priority:input.priority
             })})
-            const payload = (await res.json()) as ItemResponse
             if(!res.ok) throw new Error(`Request failed ${res.status}`)
+            const payload = (await res.json()) as ItemResponse
             set((state) => ({items: [payload.item, ...state.items]}))
             return payload.item
         } catch (error) {
